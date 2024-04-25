@@ -3,7 +3,7 @@
     class="button"
     :style="{ backgroundColor: bgColor }"
     :type="{ submit: submit }"
-    @click="onClick()"
+    @click="onClick"
   >
     {{ text }}
   </button>
