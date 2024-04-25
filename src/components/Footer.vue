@@ -5,8 +5,10 @@
         <div class="links">
             <router-link to="/about">About</router-link>
             <router-link to="/vuex-store">Vuex</router-link>
+            <router-link to="/options-api">Options API</router-link>
+            <router-link to="/composition-api">Composition API</router-link>
         </div>
-        </footer>
+    </footer>
 </template>
 
 <script>
