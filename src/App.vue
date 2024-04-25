@@ -1,87 +1,40 @@
 <template>
   <div class="main">
+    <!-- Header -->
     <Header
       title="Task Tracker"
       :showAddTask="showAddTask"
       @show-form-add-task="handleShowFormAddTask"
     />
 
-    <!-- Add task form -->
-    <div v-if="showAddTask">
-      <AddTask @add-task="handleAddTask" />
-    </div>
+    <!-- Router View -->
+    <router-view :showAddTask="showAddTask"></router-view>
 
-    <Tasks
-      @dblclick-reminder-task="toggleReminderTask"
-      @delete-task="deleteTask"
-      :tasks="tasks"
-    />
+    <!-- Footer -->
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header.vue";
-import Tasks from "./components/Tasks.vue";
-import AddTask from "./components/AddTask.vue";
+import Footer from './components/Footer.vue'
 
 export default {
   name: "App",
   components: {
     Header,
-    Tasks,
-    AddTask,
+    Footer
   },
   data() {
     return {
-      tasks: [],
       showAddTask: false,
     };
   },
   methods: {
     handleShowFormAddTask() {
       this.showAddTask = !this.showAddTask;
-    },
-    handleAddTask(task) {
-      this.tasks.unshift(task);
-    },
-    deleteTask(id) {
-      this.tasks = this.tasks.filter((task) => task.id !== id);
-    },
-    toggleReminderTask(id) {
-      this.tasks = this.tasks.map((task) => {
-        if (task.id === id) {
-          return {
-            ...task,
-            reminder: !task.reminder, // updated: true or false.
-          };
-        } else {
-          return task;
-        }
-      });
-    },
-  },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Task 1",
-        day: "22/01/2015",
-        reminder: true,
-      },
-      {
-        id: 2,
-        text: "Task 2",
-        day: "12/02/2015",
-        reminder: false,
-      },
-      {
-        id: 3,
-        text: "Task 3",
-        day: "02/09/2015",
-        reminder: true,
-      },
-    ];
-  },
+    }
+  }
 };
 </script>
 

@@ -3,6 +3,7 @@
     <h1 class="title">{{ title }}</h1>
 
     <Button
+      v-show="homePage"
       :text="showAddTask ? 'Close' : 'Add Task'"
       :bgColor="showAddTask ? 'red' : 'black'"
       @btn-clicked="this.$emit('show-form-add-task')"
@@ -22,6 +23,15 @@ export default {
   components: {
     Button,
   },
+  computed: {
+    homePage() {
+      if(this.$route.path === '/') {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 };
 </script>
 
